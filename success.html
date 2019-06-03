@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Montserrat" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <title>Chase, we want freedom</title>
+    <!-- Load Stripe.js on your website. -->
+    <script src="https://js.stripe.com/v3"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+    <div class="container">
+      <header>
+        <h1 class="name">Great success</h1>
+      </header>
+      <p>You'll receive an email from the signature system within a week. Here are the parts you'll need to fill in:</p>
+      <ul>
+        <li>Full name and billing address (self-explanatory)</li>
+        <li>Account number(s) (the full, 16-digit credit card numbers)</li>
+        <li>Your signature (make sure to draw rather than autogenerate your signature, just in case)</li>
+      </ul>
+  </div>
+  </div>
+
+
+  <script>
+    var stripe = Stripe('pk_test_ihgeYs7Ul4PJdBGUOUjw2Gfe00Ddkej1mT');
+  </script>
+  </body>
+</html>
