@@ -25,16 +25,48 @@
         <p>I’m lazy and hate snail mail. But I figured, it’s easier if I write a form letter, we all sign it, and then I ship them all in one go, so that's what I'm doing. I reckon $3 should probably cover the signature software, printing and mailing costs. Put your deets below, and then I'll email you a link to digitally add your signature to the letter.</p>
       </article>
       
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-        <input type="hidden" name="cmd" value="_s-xclick">
-        <input type="hidden" name="hosted_button_id" value="6J599C233AJ24">
-        <table>
-          <tr><td><input type="hidden" name="on0" value="Email address">Email address</td></tr><tr><td><input type="text" name="os0" maxlength="200"></td></tr>
-        </table>
-        <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-        <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-      </form>
+      <!-- Load Stripe.js on your website. -->
+<script src="https://js.stripe.com/v3"></script>
 
+<!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
+<button
+  style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
+  id="checkout-button-sku_FBB9pbajBMQFJw"
+  role="link"
+>
+  Checkout
+</button>
+
+<div id="error-message"></div>
+
+<script>
+  var stripe = Stripe('pk_live_U7deCWtePRUgoe5hsk6vvdrV00EEYMetPg');
+
+  var checkoutButton = document.getElementById('checkout-button-sku_FBB9pbajBMQFJw');
+  checkoutButton.addEventListener('click', function () {
+    // When the customer clicks on the button, redirect
+    // them to Checkout.
+    stripe.redirectToCheckout({
+      items: [{sku: 'sku_FBB9pbajBMQFJw', quantity: 1}],
+
+      // Do not rely on the redirect to the successUrl for fulfilling
+      // purchases, customers may not always reach the success_url after
+      // a successful payment.
+      // Instead use one of the strategies described in
+      // https://stripe.com/docs/payments/checkout/fulfillment
+      successUrl: 'http://chasewewantfreedom.com/success',
+      cancelUrl: 'http://chasewewantfreedom.com/canceled',
+    })
+    .then(function (result) {
+      if (result.error) {
+        // If `redirectToCheckout` fails due to a browser or network
+        // error, display the localized error message to your customer.
+        var displayError = document.getElementById('error-message');
+        displayError.textContent = result.error.message;
+      }
+    });
+  });
+</script>
       
       <h1>FAQs</h1>
       <b>How does it work?</b>
