@@ -46,15 +46,15 @@
       // When the customer clicks on the button, redirect
       // them to Checkout.
       stripe.redirectToCheckout({
-        items: [{sku: 'sku_FBTSkNMIKQs9xf', quantity: 1}],
+        items: [{sku: 'sku_FBB9pbajBMQFJw', quantity: 1}],
 
         // Do not rely on the redirect to the successUrl for fulfilling
         // purchases, customers may not always reach the success_url after
         // a successful payment.
         // Instead use one of the strategies described in
         // https://stripe.com/docs/payments/checkout/fulfillment
-        successUrl: 'http://chasewewantfreedom.com/success',
-        cancelUrl: 'http://chasewewantfreedom.com/canceled',
+        successUrl: 'http://chasewewantfreedom.com/success.html',
+        cancelUrl: 'http://chasewewantfreedom.com/paymentfailure.html',
       })
       .then(function (result) {
         if (result.error) {
