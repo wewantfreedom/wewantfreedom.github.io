@@ -67,22 +67,22 @@
 
 
   <script>
-    var stripe = Stripe('pk_test_ihgeYs7Ul4PJdBGUOUjw2Gfe00Ddkej1mT');
+    var stripe = Stripe('pk_live_U7deCWtePRUgoe5hsk6vvdrV00EEYMetPg');
 
     var checkoutButton = document.getElementById('checkout-button-sku_FBB9pbajBMQFJw');
     checkoutButton.addEventListener('click', function () {
       // When the customer clicks on the button, redirect
       // them to Checkout.
       stripe.redirectToCheckout({
-        items: [{sku: 'sku_FBTSkNMIKQs9xf', quantity: 1}],
+        items: [{sku: 'sku_FBB9pbajBMQFJw', quantity: 1}],
 
         // Do not rely on the redirect to the successUrl for fulfilling
         // purchases, customers may not always reach the success_url after
         // a successful payment.
         // Instead use one of the strategies described in
         // https://stripe.com/docs/payments/checkout/fulfillment
-        successUrl: 'http://chasewewantfreedom.com/success',
-        cancelUrl: 'http://chasewewantfreedom.com/canceled',
+        successUrl: 'http://chasewewantfreedom.com/success.html',
+        cancelUrl: 'http://chasewewantfreedom.com/paymentfailure.html',
       })
       .then(function (result) {
         if (result.error) {
